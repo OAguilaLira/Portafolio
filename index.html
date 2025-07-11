@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ana García - Desarrolladora Web Full Stack</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        nav .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #f0f0f0;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Sections */
+        .section {
+            min-height: 100vh;
+            padding: 80px 0 40px;
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Home Section */
+        .home {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .home-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .home-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-item i {
+            color: #ffd700;
+        }
+
+        /* About Section */
+        .about {
+            background: white;
+            padding: 80px 0;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .about-image img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid #667eea;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        /* Projects Section */
+        .projects {
+            background: #f8f9fa;
+            padding: 80px 0;
+        }
+
+        .projects h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #667eea;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .project-card p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .project-features {
+            margin: 1.5rem 0;
+        }
+
+        .project-features h4 {
+            color: #764ba2;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-features ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .project-features li {
+            padding: 0.2rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .project-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background: #667eea;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* CV Section */
+        .cv {
+            background: white;
+            padding: 80px 0;
+        }
+
+        .cv h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #667eea;
+        }
+
+        .cv-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .cv-section h3 {
+            color: #764ba2;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .cv-item {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border-left: 4px solid #667eea;
+            background: #f8f9fa;
+        }
+
+        .cv-item h4 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .cv-item .date {
+            color: #764ba2;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .skill-category {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .skill-category h4 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            padding: 0.2rem 0;
+            color: #555;
+        }
+
+        /* Blog Section */
+        .blog {
+            background: #f8f9fa;
+            padding: 80px 0;
+        }
+
+        .blog h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #667eea;
+        }
+
+        .blog-post {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .blog-post h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .blog-meta {
+            color: #764ba2;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .blog-post p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+            line-height: 1.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .home-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cv-content {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            background: white;
+            color: #667eea;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">Ana García</a>
+            <ul>
+                <li><a href="#" onclick="showSection('home')">Inicio</a></li>
+                <li><a href="#" onclick="showSection('about')">Acerca de Mí</a></li>
+                <li><a href="#" onclick="showSection('projects')">Proyectos</a></li>
+                <li><a href="#" onclick="showSection('cv')">CV</a></li>
+                <li><a href="#" onclick="showSection('blog')">Blog</a></li>
+            </ul>
+            <button class="mobile-menu">☰</button>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="section home active">
+        <div class="container">
+            <div class="home-content">
+                <h1>Ana García</h1>
+                <p>Desarrolladora Web Full Stack | Especialista en Java & TypeScript</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>ana.garcia@email.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+52 449 123 4567</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <span>linkedin.com/in/ana-garcia-dev</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-github"></i>
+                        <span>github.com/ana-garcia-dev</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://via.placeholder.com/300x300/667eea/ffffff?text=Ana+G" alt="Ana García">
+                </div>
+                <div class="about-text">
+                    <h2>Acerca de Mí</h2>
+                    <p>Soy una desarrolladora web full stack apasionada por crear soluciones tecnológicas innovadoras.
+                        Con más de 3 años de experiencia en el desarrollo de aplicaciones web, me especializo en
+                        tecnologías como Java, TypeScript, React y Node.js.</p>
+                    <p>Mi journey en el desarrollo web comenzó durante mis estudios universitarios, donde descubrí mi
+                        pasión por resolver problemas complejos a través del código. Desde entonces, he trabajado en
+                        diversos proyectos que van desde aplicaciones de e-commerce hasta plataformas de salud y
+                        bienestar.</p>
+                    <p>Me caracterizo por mi capacidad de aprender rápidamente nuevas tecnologías, mi atención al
+                        detalle y mi enfoque en escribir código limpio y mantenible. Disfruto trabajando tanto en el
+                        frontend como en el backend, y tengo experiencia en metodologías ágiles como Scrum.</p>
+                    <p>Cuando no estoy programando, me gusta mantenerme actualizada con las últimas tendencias
+                        tecnológicas, contribuir a proyectos open source y compartir conocimiento con la comunidad de
+                        desarrolladores.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section projects">
+        <div class="container">
+            <h2>Mis Proyectos</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>NutriLife - Aplicación de Salud Nutricional</h3>
+                    <p>Aplicación web completa destinada a ayudar a las personas a mejorar su salud a través del cuidado
+                        de la nutrición. Proyecto desarrollado como trabajo final que integra múltiples tecnologías
+                        modernas.</p>
+
+                    <div class="project-features">
+                        <h4>Características Principales:</h4>
+                        <ul>
+                            <li>Sistema de autenticación propio y con Google OAuth</li>
+                            <li>Registro de consumo de calorías con carga de imágenes</li>
+                            <li>Tracking de consumo de agua personalizado</li>
+                            <li>Recomendaciones basadas en datos del usuario</li>
+                            <li>Notificaciones por email automatizadas</li>
+                            <li>Chatbot con IA para consultas nutricionales</li>
+                            <li>Integración con Stripe para pagos</li>
+                            <li>Blog comunitario con sistema de comentarios</li>
+                            <li>Dashboard administrativo con métricas</li>
+                        </ul>
+                    </div>
+
+                    <div class="project-features">
+                        <h4>Mi Contribución:</h4>
+                        <ul>
+                            <li>Algoritmos de cálculo nutricional personalizado</li>
+                            <li>CRUD completo para registros de consumo</li>
+                            <li>Sistema de blog con favoritos y comentarios</li>
+                            <li>Integración de pasarela de pagos con Stripe</li>
+                            <li>Sistema de notificaciones por email</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-stack">
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">NestJS</span>
+                        <span class="tech-tag">TypeORM</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">AWS S3</span>
+                        <span class="tech-tag">Stripe</span>
+                        <span class="tech-tag">SCRUM</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>Click N' Sweet - E-commerce de Dulces</h3>
+                    <p>Plataforma de e-commerce completa desarrollada para una empresa ficticia de venta de dulces a
+                        nivel mundial. Proyecto integrador que demuestra habilidades en desarrollo frontend y trabajo
+                        colaborativo.</p>
+
+                    <div class="project-features">
+                        <h4>Características Principales:</h4>
+                        <ul>
+                            <li>Sistema de autenticación de usuarios</li>
+                            <li>Carrito de compras funcional</li>
+                            <li>Categorización avanzada de productos</li>
+                            <li>Paginación optimizada para UX</li>
+                            <li>Dashboard diferenciado por tipo de usuario</li>
+                            <li>Gestión de inventario para vendedores</li>
+                        </ul>
+                    </div>
+
+                    <div class="project-features">
+                        <h4>Mi Contribución:</h4>
+                        <ul>
+                            <li>Diseño y arquitectura del frontend</li>
+                            <li>Implementación de barra de navegación responsiva</li>
+                            <li>Desarrollo de sistema de login/registro</li>
+                            <li>Optimización de experiencia de usuario</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-stack">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Bootstrap</span>
+                        <span class="tech-tag">GitHub</span>
+                        <span class="tech-tag">SCRUM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CV Section -->
+    <section id="cv" class="section cv">
+        <div class="container">
+            <h2>Currículum Vitae</h2>
+            <div class="cv-content">
+                <div class="cv-left">
+                    <div class="cv-section">
+                        <h3>Experiencia Profesional</h3>
+                        <div class="cv-item">
+                            <h4>Desarrolladora Full Stack</h4>
+                            <div class="date">2023 - Presente</div>
+                            <p>Desarrollo de aplicaciones web utilizando tecnologías modernas como NestJS, TypeScript y
+                                PostgreSQL. Responsable del diseño e implementación de APIs RESTful y interfaces de
+                                usuario responsivas.</p>
+                        </div>
+                        <div class="cv-item">
+                            <h4>Desarrolladora Frontend Jr</h4>
+                            <div class="date">2022 - 2023</div>
+                            <p>Creación de interfaces de usuario intuitivas y responsivas utilizando HTML, CSS,
+                                JavaScript y frameworks modernos. Colaboración en proyectos de e-commerce y aplicaciones
+                                web.</p>
+                        </div>
+                    </div>
+
+                    <div class="cv-section">
+                        <h3>Educación</h3>
+                        <div class="cv-item">
+                            <h4>Bootcamp Desarrollo Web Full Stack</h4>
+                            <div class="date">2022</div>
+                            <p>Programa intensivo de 6 meses enfocado en tecnologías web modernas, metodologías ágiles y
+                                desarrollo de proyectos reales.</p>
+                        </div>
+                        <div class="cv-item">
+                            <h4>Ingeniería en Sistemas Computacionales</h4>
+                            <div class="date">2018 - 2022</div>
+                            <p>Licenciatura con enfoque en desarrollo de software, bases de datos y arquitectura de
+                                sistemas.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cv-right">
+                    <div class="cv-section">
+                        <h3>Habilidades Técnicas</h3>
+                        <div class="skills-grid">
+                            <div class="skill-category">
+                                <h4>Frontend</h4>
+                                <ul>
+                                    <li>HTML5 & CSS3</li>
+                                    <li>JavaScript (ES6+)</li>
+                                    <li>TypeScript</li>
+                                    <li>React.js</li>
+                                    <li>Bootstrap</li>
+                                </ul>
+                            </div>
+                            <div class="skill-category">
+                                <h4>Backend</h4>
+                                <ul>
+                                    <li>Node.js</li>
+                                    <li>NestJS</li>
+                                    <li>Java</li>
+                                    <li>Spring Boot</li>
+                                    <li>Express.js</li>
+                                </ul>
+                            </div>
+                            <div class="skill-category">
+                                <h4>Bases de Datos</h4>
+                                <ul>
+                                    <li>PostgreSQL</li>
+                                    <li>MySQL</li>
+                                    <li>TypeORM</li>
+                                    <li>MongoDB</li>
+                                </ul>
+                            </div>
+                            <div class="skill-category">
+                                <h4>Herramientas</h4>
+                                <ul>
+                                    <li>Git & GitHub</li>
+                                    <li>AWS (S3, EC2)</li>
+                                    <li>Docker</li>
+                                    <li>Postman</li>
+                                    <li>SCRUM</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cv-section">
+                        <h3>Logros y Certificaciones</h3>
+                        <div class="cv-item">
+                            <h4>Certificación AWS Cloud Practitioner</h4>
+                            <div class="date">2023</div>
+                            <p>Certificación oficial de Amazon Web Services en fundamentos de cloud computing.</p>
+                        </div>
+                        <div class="cv-item">
+                            <h4>Mejor Proyecto Final - Bootcamp</h4>
+                            <div class="date">2022</div>
+                            <p>Reconocimiento por el desarrollo de la aplicación NutriLife, destacando la innovación y
+                                calidad técnica.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="section blog">
+        <div class="container">
+            <h2>Blog</h2>
+            <div class="blog-post">
+                <h3>Reflexión de mi camino como desarrolladora Java</h3>
+                <div class="blog-meta">Publicado el 15 de marzo de 2024 | Por Ana García</div>
+
+                <p>Escribir esta reflexión me hace darme cuenta de lo mucho que he crecido como desarrolladora desde que
+                    comencé mi journey en el mundo de la programación. Cuando inicié mi carrera, Java era solo un
+                    lenguaje más en mi lista de materias universitarias, pero hoy puedo decir con orgullo que se ha
+                    convertido en una herramienta fundamental en mi arsenal como desarrolladora full stack.</p>
+
+                <p>Mi crecimiento más significativo ha sido en el entendimiento profundo de la programación orientada a
+                    objetos y cómo aplicar principios SOLID en proyectos reales. Trabajar con Spring Boot y NestJS me ha
+                    enseñado la importancia de escribir código limpio, mantenible y escalable. Cada proyecto ha sido una
+                    oportunidad para mejorar mis habilidades en el diseño de APIs RESTful y la gestión de bases de
+                    datos.</p>
+
+                <p>Durante el desarrollo de NutriLife, me di cuenta de que mi capacidad para integrar diferentes
+                    tecnologías había evolucionado considerablemente. Logré implementar desde sistemas de autenticación
+                    OAuth hasta integración con servicios de pago, pasando por el manejo de almacenamiento en la nube.
+                    Esta experiencia me mostró que había pasado de ser alguien que seguía tutoriales a ser una
+                    desarrolladora capaz de arquitecturar soluciones completas.</p>
+
+                <p><strong>Áreas de mejora identificadas:</strong></p>
+                <p>A pesar de mi crecimiento, reconozco que aún tengo áreas importantes por mejorar. Una de las
+                    principales es mi comprensión de arquitecturas de microservicios y patrones de diseño avanzados.
+                    También necesito profundizar en testing automatizado, especialmente en testing de integración y
+                    end-to-end. Mi experiencia con DevOps y CI/CD es limitada, y considero que estas habilidades son
+                    esenciales para un desarrollador full stack moderno.</p>
+
+                <p>Otro aspecto que requiere atención es mi conocimiento en seguridad web. Aunque he implementado
+                    autenticación básica, siento que necesito entender mejor conceptos como JWT, OAuth 2.0 a
+                    profundidad, y mejores prácticas de seguridad en aplicaciones web.</p>
+
+                <p><strong>Metas a corto plazo (6-12 meses):</strong></p>
+                <p>Mi principal objetivo es obtener la certificación Oracle Java SE 11 Developer para validar
+                    oficialmente mis conocimientos. Paralelamente, planeo completar un curso especializado en Spring
+                    Security para fortalecer mis habilidades en seguridad de aplicaciones. También quiero contribuir a
+                    al menos 3 proyectos open source en GitHub para ganar experiencia colaborativa y dar back a la
+                    comunidad.</p>
+
+                <p>En el aspecto técnico, me enfocaré en aprender Docker y Kubernetes para containerización y
+                    orquestación de aplicaciones. Considero que estas tecnologías son fundamentales para el deployment
+                    moderno de aplicaciones Java.</p>
+
+                <p><strong>Metas a largo plazo (1-3 años):</strong></p>
+                <p>Mi visión a largo plazo es convertirme en una arquitecta de software especializada en ecosistemas
+                    Java. Quiero liderar equipos de desarrollo y ser responsable del diseño técnico de aplicaciones
+                    enterprise. Para lograr esto, planeo obtener certificaciones en AWS Solutions Architect y
+                    profundizar en patrones de arquitectura de microservicios.</p>
+
+                <p>También aspiro a ser speaker en conferencias tecnológicas y escribir artículos técnicos que ayuden a
+                    otros desarrolladores. Crear contenido educativo sería una manera de consolidar mi conocimiento y
+                    contribuir al crecimiento de la comunidad Java.</p>
+
+                <p>Finalmente, me gustaría especializarme en el desarrollo de aplicaciones con inteligencia artificial,
+                    combinando mi experiencia en Java con tecnologías de machine learning. Creo que la intersección
+                    entre desarrollo tradicional e IA representa el futuro de nuestra industria.</p>
+
+                <p>Este camino como desarrolladora Java ha sido desafiante pero increíblemente gratificante. Cada línea
+                    de código que escribo, cada problema que resuelvo, me acerca más a la profesional que aspiro ser.
+                    Estoy emocionada por lo que depara el futuro y comprometida con el aprendizaje continuo que
+                    caracteriza a nuestra profesión.</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+            });
+        });
+
+        // Add some interactivity to project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', function () {
+                this.style.transform = 'translateY(-10px)';
+            });
+
+            card.addEventListener('mouseleave', function () {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+
+</html>
