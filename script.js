@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const headerOffset = document.querySelector("header").offsetHeight;
       const elementPosition = sectionToShow.getBoundingClientRect().top + window.scrollY;
       window.scrollTo({
-        top: elementPosition - headerOffset - 20, // 20px extra de padding
+        top: elementPosition - headerOffset - 40, // 20px extra de padding
         behavior: "smooth",
       });
     }
