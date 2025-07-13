@@ -58,6 +58,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  document.querySelector("#boton-proyectos").addEventListener("click", (e) => {
+    const targetId = e.target.getAttribute("href").substring(1);
+    showSection(targetId);
+  });
+
   // Manejar clics en los botones "Ver Detalles" de proyectos y "Leer más" del blog
   document.querySelectorAll(".project-card .btn.outline, .blog-post-card .btn.outline").forEach((button) => {
     button.addEventListener("click", (e) => {
