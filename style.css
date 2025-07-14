@@ -129,7 +129,7 @@ main {
 }
 
 section {
-  padding: 60px 0;
+  padding: 80px 0;
   margin-bottom: 20px;
 }
 
@@ -351,7 +351,7 @@ nav .logo a {
 .project-detail-section,
 .blog-detail-section {
   background-color: var(--card-background);
-  padding: 40px;
+  padding: 80px;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   margin-bottom: 40px;
@@ -448,7 +448,7 @@ nav .logo a {
 /* About Section */
 .about-section {
   text-align: center;
-  padding: 60px 20px;
+  padding: 80px 20px;
 }
 
 .about-content {
@@ -477,10 +477,17 @@ nav .logo a {
   text-align: justify;
 }
 
+.resaltado {
+  font-weight: bold; /* Hace el texto negrita */
+  color: #2980b9; /* Puedes cambiar este color para que combine con tu branding */
+  /* Opcional: para un efecto más sutil o diferente */
+  /* text-shadow: 0 0 1px rgba(0, 0, 0, 0.2); */
+}
+
 /* CV Section */
 .cv-section {
   background-color: var(--card-background);
-  padding: 40px;
+  padding: 80px;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   margin-bottom: 40px;
